@@ -1,15 +1,17 @@
+import os 
+import sys
+
 def main():
     # get all raw lines
-    with open('data', 'r') as file:
+    with open(os.path.join(os.path.dirname(sys.argv[0]), 'data'), 'r') as file:
         data = file.read()
     elves = data.split('\n\n')
     
-    max_calories = 0
+    calories = []
     for elve in elves: 
-        calories = sum([int(food) for food in elve.split('\n')])
-        if calories > max_calories:
-            max_calories = calories
-    print(f'The elve carrying the most calories totals: {max_calories}')
+        booba = elve.split('\n')
+        calories.append(sum([int(food) for food in booba]))
+    print(f'The elve carrying the most calories totals: {max(calories)}')
 
 if __name__ == '__main__':
     main()

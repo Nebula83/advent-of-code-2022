@@ -97,7 +97,7 @@ def draw_map(map, y=None, slice=None):
 
 def doday(data):
     rocks = parse_rocks(data)
-    minx, maxx, miny, maxy = get_bounds(rocks)
+    minx, maxx, _, maxy = get_bounds(rocks)
 
     rockmap = create_grid(minx, maxx, 0, maxy)
     # draw_map(rockmap)
@@ -106,7 +106,7 @@ def doday(data):
     # draw_map(rockmap)
 
     add_rocks(rockmap, rocks, minx)
-    # draw_map(rockmap)
+    draw_map(rockmap)
     step = 0
     while True:
         step += 1
@@ -115,7 +115,7 @@ def doday(data):
             rockmap[y][x] = 'o'
             # print(f'Units {step}')
             # draw_map(rockmap, y, 30)
-            # draw_map(rockmap)
+            draw_map(rockmap)
         except IndexError:
             print(f'Done after {step - 1} units')
             break
@@ -133,8 +133,8 @@ def read_data(name):
 def main():
     print('--- Sample ---')
     doday(read_data('sample-data'))
-    print('--- Real ---')
-    doday(read_data('data'))
+    # print('--- Real ---')
+    # doday(read_data('data'))
 
 
 if __name__ == '__main__':
